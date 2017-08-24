@@ -1,3 +1,6 @@
+# original source
+https://www.npmjs.com/package/sequelize-i18n
+
 # sequelize-i18n
 
 > Easily set up internalization using [sequelize](https://github.com/sequelize/sequelize)
@@ -34,7 +37,7 @@ var Product = function (sequelize, DataTypes) {
             type 			: DataTypes.STRING
         }
     },
-    
+
     { /* options */ });
     return Product;
 };
@@ -54,9 +57,9 @@ Init Sequelize-i18n module before importing models
 var Sequelize = require('sequelize');
 var SequelizeI18N = require('sequelize-i18n');
 
-var languages = { 
-	list : ["EN" , "FR" , "ES"] , 
-	default : "FR" 
+var languages = {
+	list : ["EN" , "FR" , "ES"] ,
+	default : "FR"
 };
 
 // Init Sequelize
@@ -115,17 +118,17 @@ Sequelize-i18n will set hooks into models on create, find, update and delete ope
          // result.product_i18n == [ {name : "test" , lang : "FR" } ]
      })
 
-### Update 
+### Update
 
     product_instance.update( { name : "new name" }  )
     .then( function( result ) {
 	    // result.product_i18n = [ {name : "french name" , language_id : "FR" } ]
     }
-     
+
     product_instance.update( { name : "english name" } , { language_id : "EN" }  )
     .then( function( result ) {
         /*
-        result.product_i18n == [ 
+        result.product_i18n == [
 	        {name : "french name" , language_id : "FR" } ,
 	        {name : "english name" , language_id : "EN" }
         ]
@@ -137,7 +140,7 @@ Sequelize-i18n will set hooks into models on create, find, update and delete ope
     Product.find({ where : { id : 1 } })
     .then( function( result ) {
 	    /*
-        result.product_i18n == [ 
+        result.product_i18n == [
 	        {name : "french name" , language_id : "FR" } ,
 	        {name : "english name" , language_id : "EN" }
         ]
@@ -156,10 +159,10 @@ An Sequelize instance method is added to the Sequelize model in order to set vir
 
     product_instance.get_i18n( "EN" );
     // product_instance.name == "english name"
-    
+
     product_instance.get_i18n( "FR" );
     // product_instance.name == "french name"
-    
+
     product_instance.get_i18n( "ES" );
     // product_instance.name == "" if options.default_language_fallback is set to false
     // product_instance.name == "french name" if options.default_language_fallback is set to true
